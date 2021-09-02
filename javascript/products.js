@@ -18,12 +18,34 @@ fetch("https://sleepy-crag-84730.herokuapp.com/get-products/")
             <h4 class="product-name">${product.product_name} </h4>
             <p class="product-description">${product.description} </p>
             <p class="product-type">${product.product_type} </p>
-            <p class="product-price">${product.product_price} </p>
+            <p class="product-price">R${product.product_price} </p>
             <button onclick="addToCart(${product.item_id})">Add to Cart</button>
         </div>
         </div>`;
     });
 }); 
+
+function renderCart(cartItems) {
+    let cartContainer = document.querySelector("#cart");
+    cartContainer.innerHTML = ""
+    if (cartItems.length > 0) {
+        cartItems.map(cartItem => {
+            cartContainer.innerHTML += `
+            <div class="product">
+            <div class="product-content">
+                <h4 class="product-name">${cartItem.product_name} </h4>
+                <p class="product-description">${cartItem.description} </p>
+                <p class="product-type">${cartItem.product_type} </p>
+                <p class="product-price">R${cartItem.product_price} </p>
+            </div>
+            </div>`;
+        })
+        let totalPrice = cartItems.reduce((total, product) => total + product.product_price, 0);
+        cartContainer.innerHTML += `<h3>Your total is: ${totalPrice} </h3>`
+    } else {
+        cartContainer.innerHTML = "<h2>No items in cart.</h2>";
+    }
+}
 
 function addToCart(item_id) {
     let product = products.find(item => {
@@ -31,7 +53,9 @@ function addToCart(item_id) {
     })
     console.log(product)
     cart.push(product);
+
     console.log(cart );
+    renderCart(cart);
 }
 
 function searchForProducts() {
@@ -51,3 +75,23 @@ function searchForProducts() {
 function toggleCart() {
     document.querySelector("#cart").classList.toggle("active");
 }
+
+let modal = document.getElementById("myModal");
+
+let btn = document.getElementById("myBtn");
+
+let span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function () {
+  modal.style.display = "block";
+};
+
+span.onclick = function () {
+  modal.style.display = "none";
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};

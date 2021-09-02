@@ -9,6 +9,56 @@
 </head>
 <body>
     <div> 
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+              <div class="window">
+                <div>
+                  <div>
+                    <h1>Adding Product</h1>
+                  </div>
+                  <div>
+                    <form
+                      action="https://shopping1-app.herokuapp.com/products/"
+                      method="POST"
+                    >
+                      <input
+                        class="add"
+                        type="text"
+                        name="product_name"
+                        placeholder="Product Name"
+                      />
+                      <input
+                        class="add"
+                        type="text"
+                        name="product_type"
+                        placeholder="Product Type"
+                      />
+                      <input
+                        class="add"
+                        type="text"
+                        name="description"
+                        placeholder="Description"
+                      />
+                      <input
+                        class="add"
+                        type="text"
+                        name="product_quantity"
+                        placeholder="Product Quantity"
+                      />
+                      <input
+                        class="add"
+                        type="text"
+                        name="product_price"
+                        placeholder="Product Price"
+                      />
+                      <button class="btn" type="submit">Add</button>
+                    </form>
+                  </div>
+                  <span class="close">&times;</span>
+                </div>
+              </div>
+            </div>
+          </div>
         <div id="filters">
             <form onsubmit="event.preventDefault(); searchForProducts();">
                 <input type="text" required id="searchTerm">
