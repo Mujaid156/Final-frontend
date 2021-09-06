@@ -16,5 +16,8 @@ function  login() {
     .then(res => res.json())
     .then(data => {
         console.log(data);
+        if (data.Status_code == 200) {
+            window.location.href = "./products.html"
+        }
     })
 }

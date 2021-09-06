@@ -8,22 +8,26 @@ fetch("https://sleepy-crag-84730.herokuapp.com/get-products/")
     console.log(data);
     products = data.Data;
     console.log(products)
+    renderProducts(products)
+}); 
+
+function renderProducts(products) {
     let productContainer = document.querySelector("#products-container");
     productContainer.innerHTML = "";
     products.forEach((product) => {
         console.log(product);
         productContainer.innerHTML += `
         <div class="product">
+        <img src="${ product.image}" class="product-image">
         <div class="product-content">
             <h4 class="product-name">${product.product_name} </h4>
             <p class="product-description">${product.description} </p>
-            <p class="product-type">${product.product_type} </p>
             <p class="product-price">R${product.product_price} </p>
             <button onclick="addToCart(${product.item_id})">Add to Cart</button>
         </div>
         </div>`;
     });
-}); 
+}
 
 function renderCart(cartItems) {
     let cartContainer = document.querySelector("#cart");
@@ -32,10 +36,10 @@ function renderCart(cartItems) {
         cartItems.map(cartItem => {
             cartContainer.innerHTML += `
             <div class="product">
+            <img src="${ cartItem.image}" class="product-image">
             <div class="product-content">
                 <h4 class="product-name">${cartItem.product_name} </h4>
                 <p class="product-description">${cartItem.description} </p>
-                <p class="product-type">${cartItem.product_type} </p>
                 <p class="product-price">R${cartItem.product_price} </p>
             </div>
             </div>`;
@@ -69,7 +73,7 @@ function searchForProducts() {
         document.querySelector("#products-container").innerHTML =
         "<h2>Sorry, we do not have the item you are looking for.</h2>";
     } else
-    products(searchedProducts)
+    renderProducts(searchedProducts)
 }
 
 function toggleCart() {
@@ -95,3 +99,30 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+
+function createProduct() {
+    const name = document.querySelector("#name").value;
+    const image = document.querySelector("#image").value;
+    const desc = document.querySelector("#desc").value;
+    const price = document.querySelector("#price").value;
+
+    fetch('https://sleepy-crag-84730.herokuapp.com/products/', {
+        method: 'POST',
+        body: JSON.stringify({
+            product_name:name,
+            image:image,
+            description:desc,
+            product_price:price
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res);
+            if (res.Status_code == 201) {
+                window.location.reload
+            }
+        })
+}

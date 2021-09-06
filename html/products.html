@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="/styles/products.css">
 </head>
 <body>
+  <nav id="navbar">
+    <ul class="nav-links">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/html/register.html">Register</a></li>
+      <li><a href="/html/login.html">Login</a></li>
+      <li id="myBtn">Add Products</li>
+    </ul>
+  </nav>
     <div> 
         <div id="myModal" class="modal">
             <div class="modal-content">
@@ -17,35 +25,24 @@
                     <h1>Adding Product</h1>
                   </div>
                   <div>
-                    <form
-                      action="https://shopping1-app.herokuapp.com/products/"
-                      method="POST"
-                    >
+                    <form onsubmit="event.preventDefault(); createProduct()">
                       <input
+                      id="name"
                         class="add"
                         type="text"
                         name="product_name"
                         placeholder="Product Name"
                       />
+                      <input class="add" type="text" placeholder="Image" id="image">
                       <input
-                        class="add"
-                        type="text"
-                        name="product_type"
-                        placeholder="Product Type"
-                      />
-                      <input
+                      id="desc"
                         class="add"
                         type="text"
                         name="description"
                         placeholder="Description"
                       />
                       <input
-                        class="add"
-                        type="text"
-                        name="product_quantity"
-                        placeholder="Product Quantity"
-                      />
-                      <input
+                      id="price"
                         class="add"
                         type="text"
                         name="product_price"
