@@ -3,21 +3,25 @@ function  login() {
     // let password = document.querySelector('#password').value;
     // console.log(email, password);
 
-    fetch("https://sleepy-crag-84730.herokuapp.com/login", {
-        method: 'PATCH',
+    fetch("https://sleepy-crag-84730.herokuapp.com/login/", {
+        method: 'POST',
+        body: JSON.stringify({
+            phone_number: document.querySelector('#phone_number').value,
+            password: document.querySelector('#password').value
+        }),
         headers: {
             'Content-type': 'application/json',
         },
-        body: JSON.stringify({
-            email: document.querySelector('#email').value,
-            password: document.querySelector('#password').value
-        })
+       
     })
     .then(res => res.json())
     .then(data => {
         console.log(data);
-        if (data.Status_code == 200) {
-            window.location.href = "./products.html"
+        if (data.status_code == 201) {
+            window.location.href = "products.html"
+        }else{
+            alert("not working")
         }
+
     })
 }

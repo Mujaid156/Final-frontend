@@ -11,9 +11,9 @@
         <div><h1>Login Now</h1></div>
         <div>
             <form onsubmit="login(), event.preventDefault()">
-                <input type="email" id="email" placeholder="Enter Email Address">
+                <input type="text" id="phone_number" placeholder="Enter Phone Number">
                 <input type="password" id="password" placeholder="Enter Password">
-                <button type="submit">Submit</button>
+                <button onclick="event.preventDefault(); login()" type="submit">Submit</button>
             </form>
         </div>
     </div>
