@@ -5,18 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/styles/login.css">
 </head>
 <body>
-    <div>
-        <div><h1>Login Now</h1></div>
+    <div class="login">
+        <div class="head"><h1>Login Now</h1></div>
         <div>
             <form onsubmit="login(), event.preventDefault()">
-                <input type="text" id="phone_number" placeholder="Enter Phone Number">
-                <input type="password" id="password" placeholder="Enter Password">
-                <button onclick="event.preventDefault(); login()" type="submit">Submit</button>
+                <input class="log" type="text" id="phone_number" placeholder="Enter Phone Number">
+                <input class="log" type="password" id="password" placeholder="Enter Password">
+                <input type="checkbox" onclick="myFunction()" /> Show Password
+                <button class="btn" onclick="event.preventDefault(); login()" type="submit">Submit</button>
             </form>
         </div>
+        <div class="regi">
+            <p>Don't have an account?</p>
+            <a href="/html/register.html">Register</a>
+          </div>
+          <div class="main">
+            <a class="button" href="/index.html">Home</a>
+          </div>
+        </div>
     </div>
+   
     <script src="/javascript/login.js"></script>
 </body>
 </html>

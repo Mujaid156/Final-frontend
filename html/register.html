@@ -8,18 +8,27 @@
     <link rel="stylesheet" href="/styles/register.css">
 </head>
 <body>
-    <div>
-        <div><h1>Register Now</h1></div>
+    <div class="login">
+        <div class="head"><h1>Register Now</h1></div>
         <div>
             <form action="https://sleepy-crag-84730.herokuapp.com/user-registration/" method="POST">
-                <input class="regi" type="text" name="first_name" placeholder="Enter First Name">
-                <input class="regi" type="text" name="last_name" placeholder="Enter Surname">
-                <input class="regi" type="text" name="phone_number" placeholder="Enter Phone Number">
-                <input class="regi" type="text" name="email" placeholder="Enter Email Address">
-                <input class="regi" type="password" name="password" placeholder="Enter Password">
+                <input class="log" type="text" name="first_name" placeholder="Enter First Name">
+                <input class="log" type="text" name="last_name" placeholder="Enter Surname">
+                <input class="log" type="text" name="phone_number" placeholder="Enter Phone Number">
+                <input class="log" type="text" name="email" placeholder="Enter Email Address">
+                <input id="password" class="log" type="password" name="password" placeholder="Enter Password">
+                <input type="checkbox" onclick="myFunction()" /> Show Password
                 <button class="btn" type="submit">Register</button>
             </form>
         </div>
+        <div class="regi">
+            <p>Have an account?</p>
+            <a href="./login.html">Sign in</a>
+          </div>
+          <div class="main">
+            <a class="button" href="/index.html">Home</a>
+          </div>
     </div>
+    <script src="/javascript/register.js"></script>
 </body>
 </html>
