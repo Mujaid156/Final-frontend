@@ -2,6 +2,8 @@ let products = [];
 let cart = [];
 console.log(cart);
 
+const Storage = window.localStorage
+
 fetch("https://sleepy-crag-84730.herokuapp.com/get-products/")
 .then((res) => res.json())
 .then((data) => {
@@ -42,7 +44,9 @@ function renderCart(cartItems) {
                 <p class="product-description">${cartItem.description} </p>
                 <p class="product-price">R${cartItem.product_price} </p>
             </div>
-            </div>`;
+            </div>
+            <button onclick="clearCart()" class="clear">Remove item</button>
+            <button onclick="deleteCart()" class="clear">Clear Cart</button>`;
         })
         let totalPrice = cartItems.reduce((total, product) => total + product.product_price, 0);
         cartContainer.innerHTML += `<h3>Your total is: ${totalPrice} </h3>`
@@ -60,6 +64,34 @@ function addToCart(item_id) {
 
     console.log(cart );
     renderCart(cart);
+    
+    Storage.setItem("cart", JSON.stringify(cart))
+    console.log(cart)
+}
+
+function clearCart() {
+   let cart = []
+
+    window.localStorage.setItem("cart", JSON.stringify(cart))
+    window.localStorage.removeItem("item_id")
+    console.log(cart);
+    document.querySelector("#cart").innerHTML = "<h2>No items in cart.</h2>";
+    window.location.reload()
+}
+if(document.querySelectorAll(".deleteItem")) {
+    document.querySelectorAll(".deleteItem").forEach(button => button.addEventListener("click", deleteFromCart))
+}
+
+function deleteCart() {
+for(let item in cart){
+    if (id==cart[item].id){
+        cart.splice(item, 1)
+        window.localStorage.setItem("cart", json.stringify(cart))
+        // window.location.reload()
+        console.log(cart);
+    }
+    
+}
 }
 
 function searchForProducts() {
@@ -78,6 +110,8 @@ function searchForProducts() {
 
 function toggleCart() {
     document.querySelector("#cart").classList.toggle("active");
+    let storedcart = JSON.parse(window.localStorage['cart'])
+    renderCart(storedcart)
 }
 
 let modal = document.getElementById("myModal");

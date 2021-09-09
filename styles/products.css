@@ -22,7 +22,7 @@ body {
   left: 0;
   right: 0;
   padding: 20px;
-  background-color: blue;
+  background-color: #c76c3f;
 }
   
 .nav-links {
@@ -34,25 +34,25 @@ body {
   
 .nav-links li a {
   text-decoration: none;
-  color: aqua;
+  color: black;
   padding: 20px;
   transition: all 0.8 linear;
 }
   
 .nav-links li a:hover {
-  color: blueviolet;
-  background-color: red;
+  color: aqua;
+  background-color: #c76c3f;
 }
 
 #cart{
     position: fixed;
     top: 0;
-    /* left: 0; */
-    right: 100%;
+    left: 100%;
+    /* right: 100%; */
     bottom: 0;
     z-index: 3;
-    background-color: blue;
-    width: 100vw;
+    background-color: #c76c3f;
+    width: 50vw;
     transition: all 0.2s linear;
     display: flex;
     flex-direction: column;
@@ -62,7 +62,7 @@ body {
 }
 
 #cart.active{
-    right: 0;
+    left: 0;
 }
 
 #cart-button{
@@ -83,6 +83,7 @@ body {
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
+  
 }
   
 .modal-content {
@@ -143,6 +144,7 @@ body {
   transition: ease-in 0.3s;
   margin-top: 5%;
   border-radius: 25px;
+  
 }
   
 .btn:hover {
@@ -179,4 +181,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+#myBtn {
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  color: aqua;
 }
