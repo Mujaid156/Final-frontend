@@ -190,3 +190,9 @@ body {
 #myBtn:hover {
   color: aqua;
 }
+
+.head {
+  display: flex;
+  justify-content: center;
+  color: #c76c3f;
+}

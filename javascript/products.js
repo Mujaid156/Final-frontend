@@ -4,6 +4,7 @@ console.log(cart);
 
 const Storage = window.localStorage
 
+
 fetch("https://sleepy-crag-84730.herokuapp.com/get-products/")
 .then((res) => res.json())
 .then((data) => {
@@ -45,14 +46,15 @@ function renderCart(cartItems) {
                 <p class="product-price">R${cartItem.product_price} </p>
             </div>
             </div>
-            <button onclick="clearCart()" class="clear">Remove item</button>
-            <button onclick="deleteCart()" class="clear">Clear Cart</button>`;
+            <button onclick="clearCart()" class="clear">Clear Cart</button>
+            <button class="deleteitem" id='${cartItem.item_id}'>Remove item</button>`;
         })
         let totalPrice = cartItems.reduce((total, product) => total + product.product_price, 0);
         cartContainer.innerHTML += `<h3>Your total is: ${totalPrice} </h3>`
     } else {
         cartContainer.innerHTML = "<h2>No items in cart.</h2>";
     }
+    document.querySelectorAll('.deleteitem').forEach(button => button.addEventListener('click', deleteCart))
 }
 
 function addToCart(item_id) {
@@ -76,21 +78,19 @@ function clearCart() {
     window.localStorage.removeItem("item_id")
     console.log(cart);
     document.querySelector("#cart").innerHTML = "<h2>No items in cart.</h2>";
-    window.location.reload()
-}
-if(document.querySelectorAll(".deleteItem")) {
-    document.querySelectorAll(".deleteItem").forEach(button => button.addEventListener("click", deleteFromCart))
+    // window.location.reload()
 }
 
-function deleteCart() {
-for(let item in cart){
-    if (id==cart[item].id){
+function deleteCart(e) {
+let id = e.target.id
+let cart = JSON.parse(window.localStorage['cart'])
+for(let item of cart){
+    if (id == item.item_id){
         cart.splice(item, 1)
-        window.localStorage.setItem("cart", json.stringify(cart))
+        window.localStorage.setItem("cart", JSON.stringify(cart))
+        renderCart(cart)
         // window.location.reload()
-        console.log(cart);
     }
-    
 }
 }
 

@@ -6,7 +6,7 @@ function  login() {
     fetch("https://sleepy-crag-84730.herokuapp.com/login/", {
         method: 'POST',
         body: JSON.stringify({
-            phone_number: document.querySelector('#phone_number').value,
+            first_name: document.querySelector('#first_name').value,
             password: document.querySelector('#password').value
         }),
         headers: {
